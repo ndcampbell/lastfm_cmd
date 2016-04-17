@@ -9,7 +9,7 @@ public class Entry {
 
     public static void main(String[] args) throws Exception {
         LastFM lastfm = new LastFM();
-        lastfm.setUser("warmsounds");
-        lastfm.getArtists(2);
+        lastfm.setUserPass("warmsounds", "test");
+        lastfm.getRecentArtists(10);
     }
 }
