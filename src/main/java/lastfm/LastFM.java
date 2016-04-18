@@ -6,6 +6,8 @@ package lastfm;
 
 import de.umass.lastfm.*;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,6 +33,8 @@ class LastFM {
     }
 
     void printSimilar() throws Exception {
+        Caller.getInstance().setDebugMode(false);
+
         Chart<Artist> chart = User.getWeeklyArtistChart(config.getUser(), 5, config.getKey());
         Collection<Artist> artists = chart.getEntries();
         for (Artist artist: artists) {
@@ -39,13 +43,17 @@ class LastFM {
             for (Artist similar: similars) {
                 System.out.println("\tSimilar Artist: " + similar.getName());
                 //Gets tags of similar artist
-                //Collection<Tag> tags = Artist.getTopTags(similar.getName(), config.getKey());
-                //System.out.print("\t\tTags: ");
+                Collection<Tag> tags = Artist.getTopTags(similar.getName(), config.getKey());
+                System.out.print("\t\tTags: ");
                 //prints first 4 tags
-                //for (Tag tag: tags) {
-                 //   System.out.print(" " + tag.getName());
-               // }
-               // System.out.print("\n");
+                int i = 0;
+                for (Tag tag: tags) {
+                    if (i < 4) {
+                        System.out.print(" " + tag.getName() + ",");
+                        i++;
+                    } else { break; }
+                }
+                System.out.print("\n");
                 //Gets albums of similar artist
                 Collection<Album> albums = Artist.getTopAlbums(similar.getName(), config.getKey());
                 //prints out the first album
