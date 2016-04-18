@@ -30,16 +30,16 @@ class LoadConfig {
 
     private void setAll(String s){
         if (s.contains("ACCESS_KEY=")) {
-            this.key = parseString(s);
+            this.key = parseString(s.trim());
         }
         else if (s.contains("SECRET=")) {
-            this.secret = parseString(s);
+            this.secret = parseString(s.trim());
         }
         else if (s.contains("USERNAME=")) {
-            this.user = parseString(s);
+            this.user = parseString(s.trim());
         }
         else if (s.contains("PASSWORD=")) {
-            this.pass = parseString(s);
+            this.pass = parseString(s.trim());
         }
     }
 

@@ -35,7 +35,7 @@ class LastFM {
     void printSimilar() throws Exception {
         Caller.getInstance().setDebugMode(false);
 
-        Chart<Artist> chart = User.getWeeklyArtistChart(config.getUser(), 5, config.getKey());
+        Chart<Artist> chart = User.getWeeklyArtistChart(config.getUser(), 1, config.getKey());
         Collection<Artist> artists = chart.getEntries();
         for (Artist artist: artists) {
             Collection<Artist>  similars = Artist.getSimilar(artist.getName(), 3, config.getKey());
