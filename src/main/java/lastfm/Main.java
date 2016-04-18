@@ -3,13 +3,11 @@ package lastfm; /**
  */
 
 
-public class Entry {
-
-    private static String url = "http://www.google.com";
+public class Main {
 
     public static void main(String[] args) throws Exception {
         LastFM lastfm = new LastFM();
-        lastfm.setCredentials("warmsounds", "test");
+        lastfm.setCredentials();
         lastfm.getRecentArtists(10);
     }
 }

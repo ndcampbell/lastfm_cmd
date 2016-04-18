@@ -1,7 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin:'application'
-mainClassName = "lastfm.Entry"
+
+mainClassName = "lastfm.Main"
 
 repositories {
     mavenCentral()
@@ -11,8 +12,3 @@ dependencies {
     compile 'de.u-mass:lastfm-java:0.1.2'
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'lastfm.Entry'
-        }
-}
