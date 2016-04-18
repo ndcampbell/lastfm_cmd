@@ -33,10 +33,11 @@ class LastFM {
         Collection<Artist> artists = chart.getEntries();
         for (Artist artist: artists) {
             Collection<Artist>  similars = Artist.getSimilar(artist.getName(), 3, config.getKey());
-            System.out.println("Current Artist: " + artist.getName());
+            System.out.println("Artist: " + artist.getName());
             for (Artist similar: similars) {
-                System.out.println("Similar Artist: " + similar.getName());
+                System.out.println("\tSimilar Artist: " + similar.getName());
             }
+            System.out.println("\n");
         }
     }
 

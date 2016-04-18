@@ -21,6 +21,7 @@ class LoadConfig {
     void readConfigs() {
         try (Stream<String> stream = Files.lines(Paths.get(configpath))) {
             stream.forEach(this::setAll);
+            System.out.printf("Loaded configs from %s\n\n", configpath);
         }
         catch (IOException e) {
             e.printStackTrace();
