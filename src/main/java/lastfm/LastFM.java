@@ -32,8 +32,10 @@ class LastFM {
         config.readConfigs();
     }
 
-    void printSimilar() throws Exception {
+
+    void printSimilar() {
         Caller.getInstance().setDebugMode(false);
+        System.out.println("Showing info for user: " + config.getUser());
 
         Chart<Artist> chart = User.getWeeklyArtistChart(config.getUser(), 1, config.getKey());
         Collection<Artist> artists = chart.getEntries();
