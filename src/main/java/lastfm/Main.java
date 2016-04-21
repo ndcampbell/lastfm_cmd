@@ -32,7 +32,12 @@ public class Main {
             lastfm.setCredentials();
         }
 
-        lastfm.printSimilar();
+        if (cmd.hasOption("r")) {
+            lastfm.printRandom();
+        }
+        else {
+            lastfm.printSimilar();
+        }
 
     }
 

@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 class LastFM {
 
@@ -63,6 +64,43 @@ class LastFM {
                 System.out.println("\t\tAlbum: " + album);
             }
             System.out.println("\n");
+        }
+    }
+
+    void printRandom() {
+        Caller.getInstance().setDebugMode(false);
+        System.out.println("Random Recommendation");
+
+        Chart<Artist> chart = User.getWeeklyArtistChart(config.getUser(), 1, config.getKey());
+        Collection<Artist> artists = chart.getEntries();
+        int size = artists.size();
+        int randomnum = new Random().nextInt(size);
+        int i = 0;
+        for (Artist artist : artists) {
+            if (i == randomnum) {
+                Collection<Artist> similars = Artist.getSimilar(artist.getName(), 5, config.getKey());
+                int simRandom = new Random().nextInt(similars.size());
+                int j = 0;
+                for (Artist similar : similars) {
+                    if (j == simRandom) {
+                        System.out.println("Recommendation: " + similar.getName());
+                        Collection<Tag> tags = Artist.getTopTags(similar.getName(), config.getKey());
+                        System.out.print("\tTags: ");
+                        //prints first 4 tags
+                        int k = 0;
+                        for (Tag tag : tags) {
+                            if (k < 4) {
+                                System.out.print(" " + tag.getName() + ",");
+                                k++;
+                            } else { break; }
+
+                        }
+                        System.out.print("\n");
+                    }
+                    j = j + 1;
+                }
+            }
+            i = i + 1;
         }
     }
 
